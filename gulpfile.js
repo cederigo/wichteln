@@ -2,6 +2,7 @@
 // generated on 2014-11-21 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
+var wichteln = require('./wichteln');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
@@ -14,7 +15,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    return gulp.src(['app/scripts/**/*.js', 'app/data/db.js'])
+    return gulp.src('app/scripts/**/*.js')
         .pipe($.jshint())
         .pipe($.jshint.reporter(require('jshint-stylish')))
         .pipe($.size());
@@ -68,7 +69,7 @@ gulp.task('clean', function () {
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
 
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['clean', 'wichteln'], function () {
     gulp.start('build');
 });
 
@@ -111,6 +112,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
         'app/*.html',
         '.tmp/styles/**/*.css',
         'app/scripts/**/*.js',
+        'config.js',
         'app/images/**/*'
     ]).on('change', function (file) {
         server.changed(file.path);
@@ -121,3 +123,5 @@ gulp.task('watch', ['connect', 'serve'], function () {
     gulp.watch('app/images/**/*', ['images']);
     gulp.watch('bower.json', ['wiredep']);
 });
+
+gulp.task('wichteln', wichteln);

@@ -1,18 +1,16 @@
-#!/usr/bin/env node
-
 'use strict';
 
-/* config */
-var people = ['tämi', 'buri', 'mathias', 'roger', 'patrick', 'cedric', 'johannes', 'lilly', 'bea', 'mauri', 'mami', 'papi'];
-var blacklist = {'buri': ['cedric'], 'tämi': ['cedric']};
-var baseUrl = 'http://soom-it.ch/wichteln/';
-/* end config */
-
+var config = require('./config');
 var uuid = require('uuid');
 var fs = require('fs');
+
+var people = config.people;
+var blacklist = config.blacklist;
+var baseUrl = config.baseUrl;
+
 var graph = [];
 
-var DB_PATH = __dirname + '/app/data/db.js';
+var DB_PATH = __dirname + '/app/scripts/db.js';
 var MAX_RETRIES = 100;
 var MARK_VAL = 'x';
 
@@ -112,7 +110,7 @@ function saveSolution() {
   });
 
   graph.forEach(function (from, idx) {
-    console.log('url for ' + people[idx] + ': ' + baseUrl + '#' + db[people[idx]] + '/' + db[people[from.indexOf(MARK_VAL)]]);
+    console.log(people[idx] + '\t: ' + baseUrl + '#' + db[people[idx]] + '/' + db[people[from.indexOf(MARK_VAL)]]);
   });
 
   var data = 'window.db = {';
@@ -144,8 +142,7 @@ function solve() {
     }
   }
 
-  printGraph();
-  console.log('----------');
+  console.log('---------- wichteln --------');
 
   if (solved) {
     console.log('Found solution after ' + (i - 1) + ' retries');
@@ -153,6 +150,9 @@ function solve() {
   } else {
     console.log('could not solve ;-(');
   }
+
+  console.log('---------- wichteln --------');
+
 }
 
-solve();
+module.exports = solve;
