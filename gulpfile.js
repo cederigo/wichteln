@@ -2,6 +2,7 @@
 // generated on 2014-11-21 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
+var del = require('del');
 var wichteln = require('./wichteln');
 
 // load plugins
@@ -63,8 +64,8 @@ gulp.task('extras', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', function () {
-    return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
+gulp.task('clean', function (cb) {
+  del(['.tmp', 'dist'], cb);
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
