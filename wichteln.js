@@ -1,8 +1,9 @@
 'use strict';
 
-var config = require('./config');
 var uuid = require('uuid');
 var fs = require('fs');
+
+var config = require('./config');
 
 var people = config.people;
 var blacklist = config.blacklist;
@@ -102,22 +103,29 @@ function saveSolution() {
 
   console.log('solution is printed only once. make sure to remember urls');
 
-  var db = {};
+  var db = {from: {}, to: {}};
   people.forEach(function (name) {
-    var id = uuid();
-    db[name] = id;
-    db[id] = name;
+    ['from', 'to'].forEach(function (ctx) {
+      var id = uuid();
+      db[ctx][name] = id;
+      db[ctx][id] = name;
+    });
   });
 
   graph.forEach(function (from, idx) {
-    console.log(people[idx] + '\t: ' + baseUrl + '#' + db[people[idx]] + '/' + db[people[from.indexOf(MARK_VAL)]]);
+    console.log(people[idx] + '\t: ' + baseUrl + '#' + db.from[people[idx]] + '/' + db.to[people[from.indexOf(MARK_VAL)]]);
   });
 
-  var data = 'window.db = {';
-  for(var key in db) {
-    data += '\'' + key + '\':\'' + db[key] + '\',';
+  function values(obj) {
+    var result = '{';
+    for(var key in obj) {
+      result += '\'' + key + '\':\'' + obj[key] + '\',';
+    }
+    result += '}';
+    return result;
   }
-  data += '};';
+
+  var data = 'window.db = { from: ' + values(db.from) + ', to: ' + values(db.to) + '};';
 
   fs.writeFileSync(DB_PATH, data);
 

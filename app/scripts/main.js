@@ -1,15 +1,15 @@
-(function (w) {
+(function (global) {
   'use strict';
 
-  if (!w.db) {
+  if (!global.db) {
     throw new Error('missing db!');
   }
 
-  var d = w.document;
-  var ids = w.location.hash.slice(1).split('/');
-  var from = w.db[ids[0]];
-  var to = w.db[ids[1]];
-  var button = w.document.getElementById('button');
+  var d = global.document;
+  var ids = global.location.hash.slice(1).split('/');
+  var from = global.db.from[ids[0]];
+  var to = global.db.to[ids[1]];
+  var button = global.document.getElementById('button');
 
   function replace(id, html) {
     var e = d.getElementById(id);
@@ -18,7 +18,7 @@
     }
   }
 
-  replace('from','Aloa ' + from);
+  replace('from','Salut ' + from);
 
   button.addEventListener('click', function(e){
     e.preventDefault();
