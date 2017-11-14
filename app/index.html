@@ -5,10 +5,12 @@
     <title>Wichteln</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="styles/spoud.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
@@ -17,19 +19,32 @@
     <!--[if lt IE 10]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <section class="section">
+      <div class="container">
+        <div class="col-sm-12">
+          <h1>Secret Santa <small>@ Spoud Family</small></h1>
+        </div>
+      </div>
+    </section>
 
-    <div class="container">
-      <div class="jumbotron">
-        <h1 id="from"></h1>
-        <p class="lead">Kurzer Blick über die Schulter.</p>
-        <p class="lead">Du bist der Wichtel von..</p>
-        <p><a id="button" class="btn btn-lg btn-success" href="#">Jetzt enthüllen</a></p>
-        <h3 id="to">???</h3>
-      </div>
-      <div class="footer text-center">
-        <p>♥ Familie Mayeres - Arametti - Reginster</p>
-      </div>
-    </div>
+    <section class="section section-primary section-grey">
+      <div class="container">
+        <div class="col-sm-6">
+          <div class="section-image">
+            <img src="images/section-image1.png" alt="" width="298" height="291">
+          </div><!-- /.section-image -->
+        </div><!-- /.col-sm-6 -->
+
+        <div class="col-sm-6">
+          <div class="section-content">
+            <h2 class="section-title" id="from"></h2>
+            <p>Your gift goes to...</p>
+            <p><a id="button" class="btn btn-lg btn-success" href="#">Reveal now!</a></p>
+            <h3 id="to">???</h3>
+          </div><!-- /.section-content -->
+        </div><!-- /.col-sm-6 -->
+      </div><!-- /.container -->
+    </section>
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/db.js"></script>

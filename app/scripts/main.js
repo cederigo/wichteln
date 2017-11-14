@@ -18,7 +18,7 @@
     }
   }
 
-  replace('from','Salut ' + from);
+  replace('from',from);
 
   button.addEventListener('click', function(e){
     e.preventDefault();
