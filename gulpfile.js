@@ -3,6 +3,8 @@
 
 var gulp = require('gulp');
 var del = require('del');
+var useref = require('gulp-useref');
+var filter = require('gulp-filter');
 var wichteln = require('./wichteln');
 
 // load plugins
@@ -17,25 +19,25 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
-        .pipe($.jshint())
-        .pipe($.jshint.reporter(require('jshint-stylish')))
+        // .pipe($.jshint())
+        // .pipe($.jshint.reporter(require('jshint-stylish')))
         .pipe($.size());
 });
 
 gulp.task('html', ['styles', 'scripts'], function () {
-    var jsFilter = $.filter('**/*.js');
-    var cssFilter = $.filter('**/*.css');
+    var jsFilter = filter('**/*.js', {restore: true});
+    var cssFilter = filter('**/*.css', {restore: true});
 
     return gulp.src('app/*.html')
-        .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
+        .pipe(useref({searchPath: '{.tmp,app}'}))
         .pipe(jsFilter)
         .pipe($.uglify())
-        .pipe(jsFilter.restore())
+        .pipe(jsFilter.restore)
         .pipe(cssFilter)
         .pipe($.csso())
-        .pipe(cssFilter.restore())
-        .pipe($.useref.restore())
-        .pipe($.useref())
+        .pipe(cssFilter.restore)
+        // .pipe(assets.restore)
+        // .pipe(useref())
         .pipe(gulp.dest('dist'))
         .pipe($.size());
 });
