@@ -31,6 +31,9 @@ function init() {
 
   graph = [];
 
+  // Shuffle people
+  people.sort(function () { if (Math.random()<.5) return -1; else return 1; });
+
   function row(from, fromIdx) {
     var result = [];
     people.forEach(function (to, toIdx) {

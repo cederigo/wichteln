@@ -1,6 +1,6 @@
 module.exports = {
-  people: ['Tämi', 'Cédric', 'Sylvie', 'Elvino', 'Mauri', 'Bea', 'Irene', 'Matteo'],
+  people: ['Rui', 'Lukas', 'Lewis', 'Simon', 'Matteo', 'Bruno', 'Benny', 'Anna', 'Märcu', 'Nick', 'Cedä', 'Orestes', 'Pädu', 'Peschä', 'Claudin', 'Mättu'],
   //meaning: no secret santa between Tämi <-> Cédric etc..
-  blacklist: {'Tämi': ['Cédric'], 'Sylvie': ['Elvino'], 'Bea': ['Mauri'], 'Irene': ['Matteo']},
-  baseUrl: 'http://soom-it.ch/wichteln/'
+  blacklist: {},
+  baseUrl: 'https://spoud.io/santa/'
 };
